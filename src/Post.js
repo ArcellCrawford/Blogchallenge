@@ -1,18 +1,26 @@
-export default function Post(){
+import {formatISO9075} from "date-fns";
+import { Link } from "react-router-dom";
+export default function Post({_id,title,summary,cover,content,CreatedAt,author}){
     return(
         <main>
 {/* Posts */}
 <div className='post'>
 <div className='image'> 
-  <img src="https://i0.wp.com/drunkenanimeblog.com/wp-content/uploads/2019/06/anime-typing.gif?fit=498%2C278&ssl=1"></img>
+<Link to = {`/post/${_id}`}>
+<img src={'http://localhost:4000' + cover}></img>
+</Link>
+  
   </div>
-  <div className='text'>
-  <h2>Anime is the best thing ever</h2>
+  <div className='texts'>
+  <Link to = {`/post/${_id}`}>
+  <h2>{title}</h2>
+  </Link>
   <p className='info'>
-    <a className='author'>Arcell Crawford </a>
-    <time>2023-07-04 4:43pm</time>
+    {/*err */}
+    <a className='author'>{author.username}</a>
+    <time>{formatISO9075(new Date(CreatedAt))}</time>
   </p>
-  <p className='summary'>This is all honestly filler text.</p>
+  <p className='summary'>{summary}</p>
   </div>
 </div>
 </main>
